@@ -10,7 +10,17 @@
     "CORS"
   ],
   "author": "Andy Burke <andy.burke@mailbox.earth>",
+  "contributors": [
+  ],
+  "repository": "https://github.com/andyburke/corsable.git",
+  "bugs": "https://github.com/andyburke/corsable/issues",
+  "homepage": "https://github.com/andyburke/corsable",
   "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+  },
   "devDependencies": {
     "eslint": "^4.6.1",
     "micro": "^8.0.4",
