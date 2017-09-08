@@ -1,0 +1,22 @@
+{
+  "name": "corsable",
+  "version": "1.0.0",
+  "description": "lightweight CORS",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js | tap-spec"
+  },
+  "keywords": [
+    "CORS"
+  ],
+  "author": "Andy Burke <andy.burke@mailbox.earth>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.6.1",
+    "micro": "^8.0.4",
+    "node-fetch": "^1.7.3",
+    "tap-spec": "^4.1.1",
+    "tape-async": "^2.3.0",
+    "test-listen": "^1.0.2"
+  }
+}
