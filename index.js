@@ -1,8 +1,9 @@
 'use strict';
 
-module.exports = ( _options, response ) => {
+module.exports = ( _options, request, response ) => {
     if ( typeof response === 'undefined' ) {
-        response = _options;
+        response = request;
+        request = _options;
         _options = {};
     }
 
@@ -29,10 +30,27 @@ module.exports = ( _options, response ) => {
         credentials: true
     }, _options );
 
+    let origin = null;
+    if ( options.origin instanceof RegExp ) {
+        origin = options.origin.test( request.headers && request.headers.origin ) ? request.headers.origin : null;
+    }
+    else if ( Array.isArray( options.origin ) ) {
+        origin = options.origin.includes( request.headers && request.headers.origin ) ? request.headers.origin : null;
+    }
+    else if ( typeof options.origin === 'string' ) {
+        origin = options.origin;
+    }
+
+    if ( origin !== null ) {
+        response.setHeader( 'Access-Control-Allow-Origin', origin );
+    }
+
+    if ( options.credentials ) {
+        response.setHeader( 'Access-Control-Allow-Credentials', 'true' );
+    }
+
     response.setHeader( 'Access-Control-Max-Age', `${ options.max_age }` );
-    response.setHeader( 'Access-Control-Allow-Origin', options.origin );
     response.setHeader( 'Access-Control-Allow-Methods', options.allow_methods.join( ',' ) );
     response.setHeader( 'Access-Control-Allow-Headers', options.allow_headers.join( ',' ) );
     response.setHeader( 'Access-Control-Expose-Headers', options.expose_headers.join( ',' ) );
-    response.setHeader( 'Access-Control-Allow-Credentials', `${ options.credentials }` );
 };
