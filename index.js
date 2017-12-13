@@ -30,7 +30,7 @@ module.exports = ( _options, request, response ) => {
         credentials: true
     }, _options );
 
-    const origin_header_value = request.headers && request.headers.originl;
+    const origin_header_value = request.headers && request.headers.origin;
     const has_origin_header = typeof origin_header_value === 'string';
 
     let origin = null;
