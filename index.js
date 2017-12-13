@@ -30,15 +30,21 @@ module.exports = ( _options, request, response ) => {
         credentials: true
     }, _options );
 
+    const origin_header_value = request.headers && request.headers.originl;
+    const has_origin_header = typeof origin_header_value === 'string';
+
     let origin = null;
-    if ( options.origin instanceof RegExp ) {
-        origin = options.origin.test( request.headers && request.headers.origin ) ? request.headers.origin : null;
-    }
-    else if ( Array.isArray( options.origin ) ) {
-        origin = options.origin.includes( request.headers && request.headers.origin ) ? request.headers.origin : null;
-    }
-    else if ( typeof options.origin === 'string' ) {
+
+    if ( typeof options.origin === 'string' ) {
         origin = options.origin;
+    }
+    else if ( has_origin_header ) {
+        if ( options.origin instanceof RegExp ) {
+            origin = options.origin.test( origin_header_value ) ? origin_header_value : null;
+        }
+        else if ( Array.isArray( options.origin ) ) {
+            origin = options.origin.includes( origin_header_value ) ? origin_header_value : null;
+        }
     }
 
     if ( origin !== null ) {
