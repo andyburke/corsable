@@ -3,8 +3,6 @@
 const http = require( 'http' );
 
 module.exports = ( _options, request, response ) => {
-    debugger;
-
     if ( _options instanceof http.ServerResponse ) {
         response = _options;
         request = {};
