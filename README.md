@@ -65,11 +65,25 @@ default: `*`
 
 ### `allow_methods` (Access-Control-Allow-Methods)
 
-default: `[ 'POST','GET','PUT','DELETE','OPTIONS' ]`
+default: `[
+    'POST',
+    'GET',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS'
+]`
 
 ### `allow_headers` (Access-Control-Allow-Headers)
 
-default: `[ 'X-Requested-With','Access-Control-Allow-Origin','X-HTTP-Method-Override','Content-Type','Authorization','Accept' ]`
+default: `[
+    'X-Requested-With',
+    'Access-Control-Allow-Origin',
+    'X-HTTP-Method-Override',
+    'Content-Type',
+    'Authorization',
+    'Accept'
+]`
 
 ### `expose_headers` (Access-Control-Expose-Headers)
 
