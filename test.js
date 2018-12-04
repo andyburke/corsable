@@ -64,7 +64,7 @@ test( 'configured', async t => {
         t.equal( response && response.headers && response.headers.get( 'access-control-allow-methods' ), 'POST,PUT,GET,DELETE', `${ method } / access-control-allow-methods` );
         t.equal( response && response.headers && response.headers.get( 'access-control-allow-headers' ), 'foo', `${ method } / access-control-allow-headers` );
         t.equal( response && response.headers && response.headers.get( 'access-control-expose-headers' ), 'foo', `${ method } / access-control-expose-headers` );
-        t.equal( response && response.headers && response.headers.get( 'access-control-allow-credentials' ), 'false', `${ method } / access-control-allow-credentials` );
+        t.equal( response && response.headers && response.headers.get( 'access-control-allow-credentials' ), null, `${ method } / access-control-allow-credentials` );
 
         await router.close();
     }

@@ -1,10 +1,23 @@
 'use strict';
 
+const http = require( 'http' );
+
 module.exports = ( _options, request, response ) => {
-    if ( typeof response === 'undefined' ) {
+    debugger;
+
+    if ( _options instanceof http.ServerResponse ) {
+        response = _options;
+        request = {};
+        _options = null;
+    }
+    else if ( _options instanceof http.ClientRequest ) {
         response = request;
         request = _options;
-        _options = {};
+        _options = null;
+    }
+    else if ( request instanceof http.ServerResponse ) {
+        response = request;
+        request = {};
     }
 
     const options = Object.assign( {
