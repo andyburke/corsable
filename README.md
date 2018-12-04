@@ -7,7 +7,7 @@ Simple [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_C
 ## Install
 
 ```
-npm install corsable --save
+npm install -P corsable
 ```
 
 ## Usage
@@ -33,6 +33,22 @@ const configured_handler = ( request, response ) => {
 
     micro.send( response, 200, 'this is a CORS-enabled and configured response' );
 };
+
+const origin_list_handler = ( request, response ) => {
+    corsable( {
+        origin: [ 'domain.com', 'otherdomain.com' ]
+    }, request, response );
+
+    micro.send( response, 200, 'this is a CORS-enabled response that respects a list of origins' );
+};
+
+const origin_regex_handler = ( request, response ) => {
+    corsable( {
+        origin: new RegExp( 'https\:\/\/(?:.*\.)?somedomain\.com', 'i' )
+    }, request, response );
+
+    micro.send( response, 200, 'this is a CORS-enabled response that requires an https origin that matches (*.)somedomain.com' );
+};
 ```
 
 Or, you can create some middleware (micro-compatible example, but should work for others as well):
@@ -55,15 +71,15 @@ module.exports = cors( ( request, response ) => {
 
 ## Options
 
-### `max_age` (Access-Control-Max-Age)
+### `max_age` (Access-Control-Max-Age) [integer]
 
 default: `86400`
 
-### `origin` (Access-Control-Allow-Origin)
+### `origin` (Access-Control-Allow-Origin) [string, array, regexp]
 
 default: `*`
 
-### `allow_methods` (Access-Control-Allow-Methods)
+### `allow_methods` (Access-Control-Allow-Methods) [array]
 
 default: `[
     'POST',
@@ -74,7 +90,7 @@ default: `[
     'OPTIONS'
 ]`
 
-### `allow_headers` (Access-Control-Allow-Headers)
+### `allow_headers` (Access-Control-Allow-Headers) [array]
 
 default: `[
     'X-Requested-With',
@@ -85,6 +101,6 @@ default: `[
     'Accept'
 ]`
 
-### `expose_headers` (Access-Control-Expose-Headers)
+### `expose_headers` (Access-Control-Expose-Headers) [array]
 
 default: `[]`
