@@ -1,6 +1,6 @@
 {
   "name": "corsable",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "lightweight CORS",
   "main": "index.js",
   "scripts": {

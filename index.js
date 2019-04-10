@@ -36,9 +36,12 @@ module.exports = ( _options, request, response ) => {
             'Content-Type',
             'Authorization',
             'Accept',
+            'Cookie'
+        ],
+        expose_headers: [
+            'Authorization',
             'Set-Cookie'
         ],
-        expose_headers: [],
         credentials: true
     }, _options );
 
