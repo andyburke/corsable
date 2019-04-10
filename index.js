@@ -35,7 +35,8 @@ module.exports = ( _options, request, response ) => {
             'X-HTTP-Method-Override',
             'Content-Type',
             'Authorization',
-            'Accept'
+            'Accept',
+            'Set-Cookie'
         ],
         expose_headers: [],
         credentials: true

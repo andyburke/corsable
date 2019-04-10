@@ -98,9 +98,13 @@ default: `[
     'X-HTTP-Method-Override',
     'Content-Type',
     'Authorization',
-    'Accept'
+    'Accept',
+    'Cookie'
 ]`
 
 ### `expose_headers` (Access-Control-Expose-Headers) [array]
 
-default: `[]`
+default: `[
+    'Authorization',
+    'Set-Cookie'
+]`
